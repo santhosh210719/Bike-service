@@ -3,28 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0f" />
+
   <title>MotoServe — Bike Service Booking</title>
-  <meta name="description" content="Book your bike service online — fast, easy, and reliable. Choose from general service, oil change, or repair." />
+  <meta name="description" content="Book your bike service online — fast, easy, and reliable." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --accent:     #f97316;
-      --accent-2:   #fb923c;
-      --bg:         #0a0a0f;
-      --surface:    #111118;
-      --card:       rgba(255,255,255,0.045);
-      --border:     rgba(255,255,255,0.08);
-      --text:       #f1f1f1;
-      --muted:      #9ca3af;
-      --radius:     16px;
-      --shadow:     0 24px 64px rgba(0,0,0,0.6);
+  <style> 
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --accent: #f97316;
+      --accent-2: #fb923c;
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --card: rgba(255,255,255,0.045);
+      --border: rgba(255,255,255,0.08);
+      --text: #f1f1f1;
+      --muted: #9ca3af;
+      --radius: 16px;
+      --shadow: 0 24px 64px rgba(0,0,0,0.6);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -37,19 +47,19 @@
       overflow-x: hidden;
     }
 
-    /* ── Animated background ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 20% -10%, rgba(249,115,22,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 110%, rgba(251,146,60,0.12) 0%, transparent 55%);
+        radial-gradient(ellipse 80% 60% at 20% -10%,
+          rgba(249,115,22,0.18), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 110%,
+          rgba(251,146,60,0.12), transparent 55%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── Floating orbs ── */
     .orb {
       position: fixed;
       border-radius: 50%;
@@ -59,14 +69,29 @@
       animation: drift 12s ease-in-out infinite alternate;
       z-index: 0;
     }
-    .orb-1 { width: 420px; height: 420px; background: #f97316; top: -120px; left: -80px; animation-delay: 0s; }
-    .orb-2 { width: 320px; height: 320px; background: #fb923c; bottom: -100px; right: -60px; animation-delay: -6s; }
-    @keyframes drift {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(30px, 20px) scale(1.08); }
+
+    .orb-1 {
+      width: 420px;
+      height: 420px;
+      background: #f97316;
+      top: -120px;
+      left: -80px;
     }
 
-    /* ── Header ── */
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      background: #fb923c;
+      bottom: -100px;
+      right: -60px;
+      animation-delay: -6s;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to { transform: translate(30px,20px) scale(1.08); }
+    }
+
     header {
       position: relative;
       z-index: 10;
@@ -79,16 +104,29 @@
       backdrop-filter: blur(12px);
       background: rgba(10,10,15,0.7);
     }
+
     .logo-icon {
-      width: 42px; height: 42px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
       border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 22px;
       box-shadow: 0 0 20px rgba(249,115,22,0.4);
     }
-    .brand { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
-    .brand span { color: var(--accent); }
+
+    .brand {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
     .nav-link {
       margin-left: auto;
       font-size: 0.875rem;
@@ -100,9 +138,13 @@
       border-radius: 8px;
       transition: all 0.25s;
     }
-    .nav-link:hover { color: var(--text); border-color: var(--accent); background: rgba(249,115,22,0.08); }
 
-    /* ── Hero text ── */
+    .nav-link:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      background: rgba(249,115,22,0.08);
+    }
+
     .hero {
       position: relative;
       z-index: 10;
@@ -110,8 +152,11 @@
       padding: 64px 24px 0;
       max-width: 620px;
     }
+
     .badge {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: rgba(249,115,22,0.12);
       border: 1px solid rgba(249,115,22,0.3);
       color: var(--accent-2);
@@ -123,20 +168,26 @@
       border-radius: 999px;
       margin-bottom: 20px;
     }
-    .badge::before { content: '⚡'; }
+
+    .badge::before {
+      content: '⚡';
+    }
+
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2rem,5vw,3rem);
       font-weight: 800;
       letter-spacing: -1.5px;
       line-height: 1.12;
       margin-bottom: 16px;
     }
+
     h1 .gradient {
-      background: linear-gradient(135deg, var(--accent), #fde68a);
+      background: linear-gradient(135deg,var(--accent),#fde68a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .subtitle {
       font-size: 1rem;
       color: var(--muted);
@@ -144,11 +195,10 @@
       margin-bottom: 48px;
     }
 
-    /* ── Card ── */
     .card {
       position: relative;
       z-index: 10;
-      width: min(520px, calc(100% - 48px));
+      width: min(520px,calc(100% - 48px));
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -158,27 +208,35 @@
       margin-bottom: 60px;
       animation: slideUp 0.6s cubic-bezier(0.22,1,0.36,1) both;
     }
+
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(32px); }
-      to   { opacity: 1; transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
     .card::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: var(--radius);
       padding: 1px;
-      background: linear-gradient(135deg, rgba(249,115,22,0.3), transparent 50%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      background: linear-gradient(135deg,rgba(249,115,22,0.3),transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events: none;
     }
 
-    /* ── Form elements ── */
-    .form-grid { display: grid; gap: 20px; }
+    .form-grid {
+      display: grid;
+      gap: 20px;
+    }
 
-    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
 
     label {
       font-size: 0.8rem;
@@ -193,6 +251,7 @@
       display: flex;
       align-items: center;
     }
+
     .input-icon {
       position: absolute;
       left: 14px;
@@ -202,34 +261,43 @@
     }
 
     input[type="text"],
-    input[type="tel"],
-    select {
+    input[type="tel"] {
       width: 100%;
       padding: 13px 14px 13px 40px;
       background: rgba(255,255,255,0.06);
       border: 1px solid var(--border);
       border-radius: 10px;
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: inherit;
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-      -webkit-appearance: none;
+      transition: border-color 0.25s,background 0.25s,box-shadow 0.25s;
     }
-    input::placeholder { color: #4b5563; }
+
+    input::placeholder {
+      color: #6b7280;
+    }
+
     input[type="text"]:focus,
-    input[type="tel"]:focus,
-    select:focus {
+    input[type="tel"]:focus {
       border-color: var(--accent);
       background: rgba(249,115,22,0.07);
       box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
     }
-    select { cursor: pointer; }
-    select option { background: #1a1a22; color: var(--text); }
 
-    /* service cards */
-    .service-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-    .service-opt { display: none; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+    }
+
+    .service-opt {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+
     .service-label {
       display: flex;
       flex-direction: column;
@@ -245,46 +313,113 @@
       text-align: center;
       transition: all 0.2s;
     }
-    .service-label .svc-icon { font-size: 24px; }
+
+    .service-label .svc-icon {
+      font-size: 24px;
+    }
+
     .service-opt:checked + .service-label {
       border-color: var(--accent);
       background: rgba(249,115,22,0.12);
       color: var(--accent-2);
     }
-    .service-label:hover { border-color: rgba(249,115,22,0.4); color: var(--text); }
 
-    /* ── Submit button ── */
+    .service-label:hover {
+      border-color: rgba(249,115,22,0.4);
+      color: var(--text);
+    }
+
+    .service-opt:focus-visible + .service-label {
+      outline: 3px solid var(--accent-2);
+      outline-offset: 3px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
     .btn-submit {
       width: 100%;
       padding: 15px;
       margin-top: 6px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
       border: none;
       border-radius: 12px;
       color: #fff;
-      font-family: 'Inter', sans-serif;
+      font-family: inherit;
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.02em;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      transition: transform 0.2s,box-shadow 0.2s,filter 0.2s;
       box-shadow: 0 8px 24px rgba(249,115,22,0.35);
-      position: relative;
-      overflow: hidden;
     }
-    .btn-submit::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(249,115,22,0.5); filter: brightness(1.08); }
-    .btn-submit:hover::after { opacity: 1; }
-    .btn-submit:active { transform: translateY(0); }
 
-    /* ── Stats bar ── */
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(249,115,22,0.5);
+      filter: brightness(1.08);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      cursor: wait;
+      opacity: 0.75;
+      transform: none;
+    }
+
+    .field-error {
+      color: #fca5a5;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      margin-top: 7px;
+    }
+
+    .input-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important;
+    }
+
+    .form-status {
+      border-radius: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-top: 4px;
+      padding: 10px 12px;
+    }
+
+    .form-status:empty {
+      display: none;
+    }
+
+    .form-status--error {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.35);
+      color: #fecaca;
+    }
+
+    .form-status--success {
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.35);
+      color: #bbf7d0;
+    }
+
     .stats {
       position: relative;
       z-index: 10;
@@ -294,27 +429,27 @@
       flex-wrap: wrap;
       padding: 0 24px 56px;
     }
+
     .stat {
       text-align: center;
       animation: slideUp 0.6s cubic-bezier(0.22,1,0.36,1) both;
     }
+
     .stat:nth-child(2) { animation-delay: 0.1s; }
     .stat:nth-child(3) { animation-delay: 0.2s; }
-    .stat-num { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
-    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── Divider ── */
-    .divider {
-      display: flex; align-items: center; gap: 12px;
-      margin: 4px 0 0;
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
       color: var(--muted);
-      font-size: 0.78rem;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
+      margin-top: 2px;
     }
 
-    /* ── Footer ── */
     footer {
       position: relative;
       z-index: 10;
@@ -325,99 +460,255 @@
       border-top: 1px solid var(--border);
       width: 100%;
     }
+
+    :focus-visible {
+      outline: 3px solid var(--accent-2);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 18px;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+      }
+
+      .hero {
+        padding: 44px 20px 0;
+      }
+
+      h1 {
+        letter-spacing: -0.8px;
+      }
+
+      .subtitle {
+        font-size: 0.92rem;
+        margin-bottom: 32px;
+      }
+
+      .card {
+        width: calc(100% - 28px);
+        padding: 24px 18px;
+        margin-bottom: 42px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .service-label {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 12px 14px;
+        font-size: 0.88rem;
+      }
+
+      .service-label .svc-icon {
+        font-size: 21px;
+      }
+
+      .stats {
+        gap: 22px;
+        padding-bottom: 40px;
+      }
+
+      .stat-num {
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      header {
+        gap: 8px;
+        padding-inline: 12px;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 19px;
+      }
+
+      .brand {
+        font-size: 1.05rem;
+      }
+
+      .nav-link {
+        font-size: 0.74rem;
+        padding: 7px 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
-<body>
 
+<body>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
 
-  <!-- Header -->
   <header>
     <div class="logo-icon">🏍️</div>
     <div class="brand">Moto<span>Serve</span></div>
-    <a href="view.php" class="nav-link" id="view-bookings-link">View Bookings →</a>
+    <a href="view.php" class="nav-link" id="view-bookings-link">
+      View Bookings →
+    </a>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="badge">Trusted Service Center</div>
     <h1>Book Your Bike<br /><span class="gradient">Service Today</span></h1>
-    <p class="subtitle">Fast, transparent and professional bike servicing.<br />Fill in your details and we'll handle the rest.</p>
+    <p class="subtitle">
+      Fast, transparent and professional bike servicing.<br />
+      Fill in your details and we'll handle the rest.
+    </p>
   </section>
 
-  <!-- Booking Form Card -->
   <div class="card">
     <form id="booking-form" action="submit.php" method="post" novalidate>
       <div class="form-grid">
 
-        <!-- Name -->
         <div class="field">
           <label for="name">Full Name</label>
           <div class="input-wrap">
             <span class="input-icon">👤</span>
-            <input type="text" id="name" name="name" placeholder="e.g. Ravi Kumar" required autocomplete="name" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="e.g. Ravi Kumar"
+              required
+              autocomplete="name"
+            />
           </div>
         </div>
 
-        <!-- Bike -->
         <div class="field">
           <label for="bike">Bike Model</label>
           <div class="input-wrap">
             <span class="input-icon">🏍️</span>
-            <input type="text" id="bike" name="bike" placeholder="e.g. Royal Enfield Classic 350" required />
+            <input
+              type="text"
+              id="bike"
+              name="bike"
+              placeholder="e.g. Royal Enfield Classic 350"
+              required
+            />
           </div>
         </div>
 
-        <!-- Service -->
         <div class="field">
-          <label>Select Service</label>
+          <label id="service-label">Select Service</label>
+
           <div class="service-grid">
-            <input class="service-opt" type="radio" name="service" id="svc-general" value="General Service" checked />
+            <input
+              class="service-opt"
+              type="radio"
+              name="service"
+              id="svc-general"
+              value="General Service"
+              checked
+              required
+              aria-labelledby="service-label"
+            />
             <label class="service-label" for="svc-general">
-              <span class="svc-icon">🔧</span>General Service
+              <span class="svc-icon">🔧</span>
+              General Service
             </label>
 
-            <input class="service-opt" type="radio" name="service" id="svc-oil" value="Oil Change" />
+            <input
+              class="service-opt"
+              type="radio"
+              name="service"
+              id="svc-oil"
+              value="Oil Change"
+            />
             <label class="service-label" for="svc-oil">
-              <span class="svc-icon">🛢️</span>Oil Change
+              <span class="svc-icon">🛢️</span>
+              Oil Change
             </label>
 
-            <input class="service-opt" type="radio" name="service" id="svc-repair" value="Repair" />
+            <input
+              class="service-opt"
+              type="radio"
+              name="service"
+              id="svc-repair"
+              value="Repair"
+            />
             <label class="service-label" for="svc-repair">
-              <span class="svc-icon">⚙️</span>Repair
+              <span class="svc-icon">⚙️</span>
+              Repair
             </label>
           </div>
         </div>
 
-        <!-- Mobile -->
         <div class="field">
           <label for="mobile">Mobile Number</label>
           <div class="input-wrap">
             <span class="input-icon">📱</span>
-            <input type="tel" id="mobile" name="mobile" placeholder="10-digit number" required maxlength="10" pattern="[0-9]{10}" />
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              placeholder="10-digit number"
+              required
+              maxlength="10"
+              pattern="[0-9]{10}"
+              inputmode="numeric"
+              autocomplete="tel"
+            />
           </div>
         </div>
 
         <div class="divider">Ready to book?</div>
 
-        <!-- Submit -->
-        <button type="submit" class="btn-submit" id="book-now-btn">🚀 Book My Service</button>
+        <div
+          id="form-status"
+          class="form-status"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+        <button type="submit" class="btn-submit" id="book-now-btn">
+          🚀 Book My Service
+        </button>
 
       </div>
     </form>
   </div>
 
-  <!-- Stats -->
   <div class="stats">
     <div class="stat">
       <div class="stat-num">1,200+</div>
       <div class="stat-label">Bikes Serviced</div>
     </div>
+
     <div class="stat">
       <div class="stat-num">4.9 ★</div>
       <div class="stat-label">Customer Rating</div>
     </div>
+
     <div class="stat">
       <div class="stat-num">24 hr</div>
       <div class="stat-label">Avg. Turnaround</div>
@@ -427,56 +718,145 @@
   <footer>© 2026 MotoServe · All rights reserved</footer>
 
   <script>
-    // Client-side validation with shake animation
     const form = document.getElementById('booking-form');
-    const btn  = document.getElementById('book-now-btn');
+    const btn = document.getElementById('book-now-btn');
+    const status = document.getElementById('form-status');
 
-    form.addEventListener('submit', function(e) {
-      const name   = document.getElementById('name').value.trim();
-      const bike   = document.getElementById('bike').value.trim();
-      const mobile = document.getElementById('mobile').value.trim();
-      const service = document.querySelector('input[name="service"]:checked');
+    const fields = {
+      name: document.getElementById('name'),
+      bike: document.getElementById('bike'),
+      mobile: document.getElementById('mobile')
+    };
 
-      if (!name || !bike || !mobile || !service) {
-        e.preventDefault();
-        shakeCard();
-        return;
+    function clearError(input) {
+      input.classList.remove('input-error');
+      input.removeAttribute('aria-invalid');
+
+      const errorId = input.id + '-error';
+      const error = document.getElementById(errorId);
+
+      if (error) {
+        error.remove();
       }
-      if (!/^[0-9]{10}$/.test(mobile)) {
-        e.preventDefault();
-        document.getElementById('mobile').style.borderColor = '#ef4444';
-        shakeCard();
-        return;
-      }
 
-      btn.textContent = '⏳ Booking...';
-      btn.disabled = true;
-    });
-
-    function shakeCard() {
-      const card = document.querySelector('.card');
-      card.style.animation = 'none';
-      card.offsetHeight; // reflow
-      card.style.animation = 'shake 0.4s ease';
+      input.removeAttribute('aria-describedby');
     }
 
-    // Add shake keyframes dynamically
-    const style = document.createElement('style');
-    style.textContent = `
+    function showError(input, message) {
+      clearError(input);
+
+      input.classList.add('input-error');
+      input.setAttribute('aria-invalid', 'true');
+
+      const error = document.createElement('p');
+      error.id = input.id + '-error';
+      error.className = 'field-error';
+      error.textContent = message;
+
+      input.closest('.field').appendChild(error);
+      input.setAttribute('aria-describedby', error.id);
+    }
+
+    function showStatus(message, type) {
+      status.textContent = message;
+      status.className = 'form-status form-status--' + type;
+    }
+
+    function validateForm() {
+      Object.values(fields).forEach(clearError);
+
+      status.textContent = '';
+      status.className = 'form-status';
+
+      let firstInvalid = null;
+
+      const name = fields.name.value.trim();
+      const bike = fields.bike.value.trim();
+      const mobile = fields.mobile.value.trim();
+
+      if (!name) {
+        showError(fields.name, 'Please enter your full name.');
+        firstInvalid = firstInvalid || fields.name;
+      }
+
+      if (!bike) {
+        showError(fields.bike, 'Please enter your bike model.');
+        firstInvalid = firstInvalid || fields.bike;
+      }
+
+      if (!/^[0-9]{10}$/.test(mobile)) {
+        showError(
+          fields.mobile,
+          'Enter a valid 10-digit mobile number.'
+        );
+        firstInvalid = firstInvalid || fields.mobile;
+      }
+
+      if (!document.querySelector('input[name="service"]:checked')) {
+        showStatus('Please select a service before booking.', 'error');
+        return false;
+      }
+
+      if (firstInvalid) {
+        showStatus(
+          'Please correct the highlighted fields before continuing.',
+          'error'
+        );
+
+        firstInvalid.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    Object.values(fields).forEach((input) => {
+      input.addEventListener('input', () => {
+        clearError(input);
+
+        if (status.classList.contains('form-status--error')) {
+          status.textContent = '';
+          status.className = 'form-status';
+        }
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      if (!validateForm()) {
+        event.preventDefault();
+
+        const card = document.querySelector('.card');
+        card.classList.remove('shake-card');
+
+        void card.offsetWidth;
+
+        card.classList.add('shake-card');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Booking...';
+
+      showStatus('Submitting your booking…', 'success');
+    });
+
+    const shakeStyle = document.createElement('style');
+
+    shakeStyle.textContent = `
+      .shake-card {
+        animation: shake 0.4s ease;
+      }
+
       @keyframes shake {
-        0%,100% { transform: translateX(0); }
-        20%      { transform: translateX(-8px); }
-        40%      { transform: translateX(8px); }
-        60%      { transform: translateX(-6px); }
-        80%      { transform: translateX(6px); }
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-8px); }
+        40% { transform: translateX(8px); }
+        60% { transform: translateX(-6px); }
+        80% { transform: translateX(6px); }
       }
     `;
-    document.head.appendChild(style);
 
-    // Reset mobile border on input
-    document.getElementById('mobile').addEventListener('input', function() {
-      this.style.borderColor = '';
-    });
+    document.head.appendChild(shakeStyle);
   </script>
 </body>
 </html>
